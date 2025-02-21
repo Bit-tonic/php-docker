@@ -1,4 +1,4 @@
-FROM php:8.4-apache                                                                       
+FROM php:8.4-apache
 
 ENV DEBIAN_FRONTEND=noninteractive \
     TZ=Europe/Rome
@@ -8,7 +8,7 @@ RUN echo $TZ > /etc/timezone && \
     apt-get install -y tzdata && \
     rm -rf /var/lib/apt/lists*
 
-ENV MODULES="pdo_mysql"
+ENV MODULES="pdo_mysql sockets"
 RUN docker-php-ext-install -j$(nproc) $MODULES
 
 # Enable rewrite,  ssl, info, remoteip modules
